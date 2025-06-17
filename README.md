@@ -1,3 +1,60 @@
+# GBC Emulator S22U
+
+Un **émulateur Game Boy Color** développé avec amour en **Kotlin**, compatible **Android** et **Desktop** (JVM).  
+Projet hybride né de l’alliance redoutable entre Android Studio, VSCode, Cursor et la passion du pixel !
+
+---
+
+## Prérequis
+
+- **Java 17** ou plus récent  
+- **Kotlin 1.9+**
+- **Gradle 8.1+**
+- **Android Studio Giraffe ou +** (pour la version mobile)
+- **Un appareil Android** (API 30+) ou un émulateur
+
+---
+
+## Structure du projet
+
+### Version Desktop (VSCode)
+
+src/
+├── main/
+│ └── java/com/Hello_Dev0ps/GBC-Emu-S22U/core/
+│ ├── Memory.kt
+│ ├── CPU.kt
+│ ├── PPU.kt
+│ ├── APU.kt
+│ ├── Emulator.kt
+│ ├── ROMLoader.kt
+│ └── CBOpcodeHandler.kt
+├── assets/
+│ └── cpu_instrs.gb
+└── test/
+└── java/com/Hello_Dev0ps/GBC-Emu-S22U/core/
+├── MemoryTest.kt
+├── CPUTest.kt
+├── PPUTest.kt
+├── APUTest.kt
+├── EmulatorTest.kt
+├── ROMLoaderTest.kt
+└── CBOpcodeHandlerTest.kt
+
+### Version Android (Android Studio)
+
+app/
+├── src/
+│ ├── main/java/com/hello_dev0ps/gbcemus22u/
+│ │ ├── core/ # Même logique que la version Desktop
+│ │ ├── ui/
+│ │ │ └── GbcCanvas.kt # Canvas personnalisé pour le rendu
+│ │ └── MainActivity.kt # Entrée principale de l'app Android
+│ └── assets/
+│ └── cpu_instrs.gb
+├── test/java/com/hello_dev0ps/gbcemus22u/core/
+│ └── ... # Tous les tests unitaires
+└── androidTest/ # Tests instrumentés (à venir)
 
 ---
 
@@ -49,7 +106,7 @@
 
 ### Court Terme
 
-- Contrôles tactiles : 🅰 🅱 Start/Select + D-Pad
+- Contrôles tactiles : A, B, Start/Select + D-Pad
 - Menu de chargement de ROM
 - Save/Load state
 - Options utilisateur
@@ -98,3 +155,19 @@
 git clone https://github.com/Hello-Dev0ps/GBCEmuS22U.git
 cd GBCEmuS22U
 ./gradlew run
+
+## Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
+
+
+
+
+“Because emulating the past is building the future.”
+— @Hello_Dev0ps
