@@ -1,47 +1,100 @@
-# GBC-Emu
-
-**GBC-Emu** est un projet d’émulateur Game Boy Color open-source, développé en Kotlin avec amour, café, et détermination.  
-Objectif : faire tourner des jeux GBC directement sur Android – en mode rétro mais avec la puissance du S22 Ultra.
-
-## Fonctionnalités prévues
-
-- Emulation complète du CPU **LR35902**
-- Gestion de la **mémoire**, des **interruptions**, et du **bank switching** (MBC1, MBC3)
-- Rendu graphique **tile-based** (sprites, background, palettes)
-- Support **audio** 4 canaux (square, wave, noise)
-- Prise en charge des **entrées** tactiles & manette BT
-- Affichage optimisé Android (Canvas ou SurfaceView)
-- Sauvegarde d’état (`.sav` / save states)
-- Aucune clé sensible stockée ou versionnée (sécurité first)
-
-## Plateforme ciblée
-
-- Android 10+ (testé sur Galaxy S22 Ultra)
-- Kotlin (100%)
-- Android Studio + Gradle
-
-## Stack technique
-
-| Composant | Tech |
-|----------|------|
-| CPU | Kotlin - Simulation cycle par cycle |
-| Rendu | Canvas Android (puis OpenGL en option) |
-| Audio | SoundPool ou AudioTrack |
-| UI | Kotlin + XML / Jetpack Compose |
-| Tests | ROMs de Blargg (cpu_instrs, instr_timing, etc.) |
-
-## En cours de dev
-
-Ce projet est en chantier !  
-Il est développé en solo pour le kiff, le skill, et le style
-
-## Objectif final
-
-Faire tourner des classiques comme **Pokémon Cristal**, **Zelda Oracle of Ages**, ou **Wario Land 3**, en 60 FPS, avec un rendu propre et du son nickel
 
 ---
 
-### Par : Hello_Dev0ps!  
-Contact : [hello_dev0ps@protonmail.com](mailto:hello_dev0ps@protonmail.com)
+## Fonctionnalités Implémentées
+
+### Cœur de l’émulateur
+
+- **Memory** :
+  - Mapping mémoire complet (ROM, RAM, VRAM, etc.)
+  - Gestion des MBC1/2/3/5
+  - Real-Time Clock (RTC MBC3)
+
+- **CPU** :
+  - Registres AF, BC, DE, HL, SP, PC
+  - Flags : Z, N, H, C
+  - Support des interruptions
+  - Gestion des cycles + Opcodes
+
+- **PPU (graphisme)** :
+  - Modes LCD
+  - Rendu des tuiles et sprites
+  - Palettes, scrolling, VBlank / HBlank
+
+- **APU (audio)** :
+  - Canaux carrés, ondes, bruit
+  - Volume, sweep, enveloppes
+  - Buffer audio natif
+
+- **ROMLoader** :
+  - Validation et parsing des headers
+  - Détection des tailles, MBC, batterie
+  - Lecture depuis les assets
+
+### Tests Unitaires
+
+- Couverture complète de la stack (CPU, PPU, APU, Memory, ROM)
+- ROM de test incluse : `cpu_instrs.gb`
+
+### Interface Android
+
+- UI avec **Jetpack Compose**
+- Canvas custom : `GbcCanvas`
+- Boutons : Start / Stop / Reset
+- Debug zone : FPS, cycles CPU
 
 ---
+
+## Fonctionnalités à Implémenter
+
+### Court Terme
+
+- Contrôles tactiles : 🅰 🅱 Start/Select + D-Pad
+- Menu de chargement de ROM
+- Save/Load state
+- Options utilisateur
+
+### Moyen Terme
+
+- Support couleurs GBC
+- Fréquence double (CGB Mode)
+- Cheats (GameShark)
+- Gestion mémoire batterie + saves
+- Optimisations CPU/GPU
+
+### 🚀 Long Terme
+
+- Débogueur intégré
+- Netplay via Wi-Fi
+- Traductions FR/EN
+- Cloud save avec Firebase
+
+---
+
+## Contrôles Android prévus
+
+| Bouton       | Fonction             |
+|--------------|----------------------|
+| A / B        | Boutons d'action     |
+| Start / Select | Navigation         |
+| D-Pad        | Déplacement          |
+| Reset        | Redémarrage du jeu   |
+
+---
+
+## À propos des ROMs
+
+> ** Note légale :**  
+> Aucune ROM commerciale n’est fournie. Seule la ROM de test `cpu_instrs.gb` est incluse à des fins éducatives.  
+> Tu dois **posséder la cartouche originale** pour utiliser une ROM de jeu.
+
+---
+
+## Comment exécuter
+
+### Desktop
+
+```bash
+git clone https://github.com/Hello-Dev0ps/GBCEmuS22U.git
+cd GBCEmuS22U
+./gradlew run
