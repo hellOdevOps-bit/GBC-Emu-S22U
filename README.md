@@ -62,7 +62,7 @@
 - Gestion mémoire batterie + saves
 - Optimisations CPU/GPU
 
-### 🚀 Long Terme
+### Long Terme
 
 - Débogueur intégré
 - Netplay via Wi-Fi
